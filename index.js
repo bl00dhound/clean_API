@@ -34,7 +34,7 @@ const server = (req, res) => {
 			queryString,
 			method,
 			headers,
-			payload: buffer
+			payload: buffer.replace(/\s/g, '')
 		};
 
 		currentHandler(data, (statusCode, payload) => {
