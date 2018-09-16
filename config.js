@@ -11,6 +11,13 @@ const environment = {
 	}
 };
 
+const secret = 'so so secret';
+
 const currentEnvironment = typeof (process.env.NODE_ENV) === 'string' ? process.env.NODE_ENV.toLowerCase() : '';
 
-module.exports = typeof (environment[currentEnvironment]) === 'object' ? environment[currentEnvironment] : environment.staging;
+const env = typeof (environment[currentEnvironment]) === 'object' ? environment[currentEnvironment] : environment.staging;
+
+module.exports = {
+	env,
+	secret
+};

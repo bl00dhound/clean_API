@@ -4,7 +4,7 @@ const fs = require('fs');
 const url = require('url');
 const { StringDecoder } = require('string_decoder');
 
-const config = require('./config');
+const config = require('./config').env;
 const router = require('./lib/routes');
 const httpsOptions = {
 	key: fs.readFileSync('./https/key.pem'),
@@ -34,7 +34,7 @@ const server = (req, res) => {
 			queryString,
 			method,
 			headers,
-			payload: buffer.replace(/\s/g, '')
+			payload: buffer
 		};
 
 		currentHandler(data, (statusCode, payload) => {
