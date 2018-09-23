@@ -1,5 +1,5 @@
 .vscode
-https
+https/*.pem
 .data/users/*.*
 .data/tokens/*.*
 !.data/*/.gitkeep
