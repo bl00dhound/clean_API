@@ -4,3 +4,4 @@ https/*.pem
 .data/tokens/*.*
 !.data/*/.gitkeep
 !.https/.gitkeep
+.DS_Store
