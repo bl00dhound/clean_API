@@ -4,22 +4,12 @@ const fs = require('fs');
 const url = require('url');
 const { StringDecoder } = require('string_decoder');
 
-const config = require('./config');
-const handlers = {};
+const config = require('./config').env;
+const router = require('./lib/routes');
 const httpsOptions = {
 	key: fs.readFileSync('./https/key.pem'),
 	cert: fs.readFileSync('./https/cert.pem')
 };
-
-handlers.notFound = (data, cb) => cb(404); 
-handlers.root = (data, cb) => cb(200, 'API v1.0');
-handlers.hello = (data, cb) => cb(200, { message: 'Hello!!!' });
-
-const router = {
-	root: handlers.root,
-	hello: handlers.hello,
-	notFound: handlers.notFound
-}
 
 const server = (req, res) => {
 	const parsedUrl = url.parse(req.url, true);
@@ -38,26 +28,24 @@ const server = (req, res) => {
 	req.on('end', () => {
 		buffer += decoder.end();
 
-		const currentHandler = typeof(router[trimmedPathname]) === 'undefined' ? router.notFound : router[trimmedPathname];
+		const currentHandler = typeof (router[trimmedPathname]) === 'undefined' ? router.notFound : router[trimmedPathname];
 		const data = {
 			trimmedPathname,
 			queryString,
 			method,
 			headers,
-			payload: buffer			
+			payload: buffer
 		};
 
 		currentHandler(data, (statusCode, payload) => {
-			statusCode = typeof(statusCode) == 'number' ? statusCode : 200;
-
-			payload = payload ? JSON.stringify(payload) : '';
+			const checkedStatusCode = typeof (statusCode) === 'number' ? statusCode : 200;
+			const checkedPayload = payload ? JSON.stringify(payload) : '';
 
 			res.setHeader('Content-Type', 'application/json');
-			res.writeHead(statusCode);
-			res.end(payload);
-			console.log('Returning this response: ', statusCode, payload);
+			res.writeHead(checkedStatusCode);
+			res.end(checkedPayload);
+			console.log('Returning this response: ', checkedStatusCode, checkedPayload);
 		});
-
 	});
 };
 
@@ -69,5 +57,5 @@ httpServer.listen(config.httpPort, () => {
 });
 
 httpsServer.listen(config.httpsPort, () => {
-	console.log(`HTTPS serser is started on ${config.httpsPort} port.`)
+	console.log(`HTTPS serser is started on ${config.httpsPort} port.`);
 });
