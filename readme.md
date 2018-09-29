@@ -50,7 +50,7 @@
 				"tosAgreement": true
 			}
 	
-	**Update user:**
+	Update user:
 		Request:
 			curl -X PUT \
 				http://localhost:5000/users \
@@ -70,7 +70,7 @@
 				"tosAgreement": true
 			}
 	
-	**Get user:**
+	Get user:
 		Request:
 			curl -X GET \
 			'http://localhost:5000/users?phone=2222222222' \
@@ -85,7 +85,7 @@
 			"tosAgreement": true
 		}
 
-	**Delete user:**
+	Delete user:
 		Request:
 			curl -X DELETE \
 			'http://localhost:5000/users?phone=2222222222' \
@@ -101,7 +101,7 @@
 			}
 
 #### /auth
-	**Create token:**
+	Create token:
 		Request:
 			curl -X POST \
 			http://localhost:5000/auth \
@@ -118,7 +118,7 @@
 				"expires": 1538237093718
 			}
 	
-	**Update token:**
+	Update token:
 		Request:
 			curl -X PUT \
 				http://localhost:5000/auth \
@@ -135,7 +135,7 @@
 			"expires": 1540826203640
 		}
 	
-	**Get token:**
+	Get token:
 		Request:
 			curl -X GET \
 				'http://localhost:5000/auth?id=AVFU2QME9LvJs6fytnlB' \
@@ -150,7 +150,7 @@
 				"expires": 1540826203640
 			}
 	
-	**Delete token:**
+	Delete token:
 		Request:
 			curl -X DELETE \
 				'http://localhost:5000/auth?id=AVFU2QME9LvJs6fytnlB' \
