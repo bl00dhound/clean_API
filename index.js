@@ -37,7 +37,7 @@ const server = (req, res) => {
 			payload: buffer
 		};
 
-		currentHandler(data, (statusCode, payload, headers = []) => {
+		currentHandler(data, (statusCode, payload) => {
 			const checkedStatusCode = typeof (statusCode) === 'number' ? statusCode : 200;
 			const checkedPayload = payload ? JSON.stringify(payload) : '';
 
