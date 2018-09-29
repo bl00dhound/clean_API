@@ -14,7 +14,7 @@
 
 	```NODE_ENV=staging node index.js```
 
-* Both servers (http and https) will bi started.
+* Both servers (http and https) will be started.
 
 ### API
 #### errors
@@ -27,7 +27,7 @@
 			"you shoud accept our Terms of Service"
 		]	
 #### /users
-	**Create user:**
+	Create user:
 		Request:
 			curl -X POST \
 				http://localhost:5000/users \
