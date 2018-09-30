@@ -89,7 +89,6 @@
 		Request:
 			curl -X DELETE \
 			'http://localhost:5000/users?phone=2222222222' \
-			-H 'token: AVFU2QME9LvJs6fytnlB'
 		Status: 200
 		Response:
 			{
@@ -154,8 +153,32 @@
 		Request:
 			curl -X DELETE \
 				'http://localhost:5000/auth?id=AVFU2QME9LvJs6fytnlB' \
-		Status:200
+		Status: 200
 		Response:
 			{}
 
+#### /menues
+	Get all menues:
+		Request:
+			curl -X GET \
+				'http://localhost:5000/menues?phone=2222222222' \
+				-H 'Content-Type: application/json' \
+				-H 'token: AVFU2QME9LvJs6fytnlB'
+		Status: 200
+		Response:
+			[
+				{
+					"id": 1,
+					"title": "Pizza Pepperoni Blues",
+					"ingredients": [
+							"Mozarella",
+							"Bergader Blue",
+							"Peperoni",
+							"Al'fredo sauce"
+					],
+					"price": "4.30",
+					"image": "https://media.dominos.ua/__sized__/menu/product_osg_image/2018/03/30/%D0%BF%D0%B5%D0%BF%D0%BF%D0%B5%D1%80%D0%BE%D0%BD%D0%B8_%D0%B1%D0%BB%D1%8E%D0%B7-thumbnail-2300x2300-70.jpg"
+				},
+				{ ... }
+			]
 
